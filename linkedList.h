@@ -1,8 +1,10 @@
 /* 
  * File:   linkedList.h
  * Author: Brett Noltkamper
- *
- * 
+ * Date Completed:
+ * Function:
+ * Input:
+ * Output:
  */
 
 #ifndef LINKEDLIST_H
@@ -10,26 +12,33 @@
 #include <cstdlib>
 #include <iostream>
 #include "node.h"
+#include "node.cpp"
 
 
 using namespace std;
 
+template <class T>
 class linkedList {
 public:
     linkedList();
     linkedList(int _size);
-    linkedList(int _size, int value);
+    linkedList(int _size, T value);
     ~linkedList();
    
-    void insert(int value, int index);
-    int find(int value);
+    void insert(T value, int index);
+    int find(T value);
+    T operator[](int index);
+    
+    int getSize() const;
+    void init();
     
 private:
     int size;
-    node* head;
-    node* next;
-    node* tail;
-    
+    node<T> *head;
+    node<T> *next;
+    node<T> *tail;
+    node<T> *currentNode;
+    node<T> *tempNode;
 };
 
 
