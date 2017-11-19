@@ -14,40 +14,24 @@
 
 using namespace std;
 
-template <class T>
-class node {
+class node{
 public:
     node();
-    node(T _value);
-    node(T _value, node *_nextNode);
+    node(double _value);
+    node(double _value, node *_nextNode);
     node(const node& orig);
     ~node();
 
-    
     void printAll();
-    node* GetNextNode() const {
-        return nextNode;
-    }
-
-   
-    void SetNextNode(node* _nextNode) {
-        nextNode = _nextNode;
-    }
-
- 
-    T GetValue() const {
-        return value;
-    }
-
-
-    void SetValue(T _value) {
-        value = _value;
-    }
-
     
+    node* GetNextNode()const;
+    void SetNextNode(node* );
+    
+    double GetValue() const;
+    void SetValue(double );
     
 private:
-    T value;
+    double value;
     node *nextNode;
 
 };

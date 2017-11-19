@@ -8,32 +8,45 @@
  */
 
 #include "node.h"
+#include <iostream>
+using namespace std;
 
-template <class T>
-node<T>::node() : value(0), nextNode(NULL){
+node::node() : value(0), nextNode(NULL) {
+   
+}
+
+node::node(double _value) : value(_value), nextNode(NULL){
     
 }
 
-template <class T>
-node<T>::node(T _value): value(_value), nextNode(NULL) {
-}
-
-template <class T>
-node<T>::node(T _value, node *_nextNode) : value(_value), nextNode(_nextNode) {
+node::node(double _value, node *_nextNode) : value(_value), nextNode(_nextNode){
+    
     
 }
 
-template <class T>
-node<T>::node(const node& orig) : value(orig.GetValue()), nextNode(orig.GetNextNode()) {
+node::node(const node& orig) : value(orig.GetValue()), nextNode(orig.GetNextNode()){
  
 }
 
-template <class T>
-node<T>::~node() {
+node::~node(){
 }
 
-template <class T>
-void node<T>::printAll(){
+node* node::GetNextNode() const {
+        return nextNode;
+    }
+
+void node::SetNextNode(node* _nextNode) {
+        nextNode = _nextNode;
+    }
+
+double node::GetValue() const {
+        return value;
+    }
+
+void node::SetValue(double _value){
+    value = _value;
+}
+void node::printAll(){
     cout << "Node content:" << endl;
     cout << value << endl;
     cout << nextNode << endl;

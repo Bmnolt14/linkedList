@@ -10,95 +10,99 @@
 #include <iostream>
 #include "linkedList.h"
 #include "node.h"
-#include "node.cpp"
 
 using namespace std;
 
-template <class T>
-linkedList<T>::linkedList() : size(0), head(0), next(NULL), tail(head) {
+//Default Constructor, list of size 0.
+linkedList::linkedList() : size(0), head(0), next(NULL) {
 }
 
-template <class T>
-linkedList<T>::linkedList(int _size) : size(_size), head(0), next(head.GetNextNode()), tail(0){
-    node<T> *currentNode;
-    node<T> *tempNode;
-    currentNode = head;
+//Alt Constructor, list of _size, full of 0's
+linkedList::linkedList(int _size) : size(_size), head(0), next(0){
+    node head(0);
+    tail = &head;
     for(int i=0; i < getSize(); i++){
-        tempNode = new node<T>(0);
-        currentNode->SetNextNode(tempNode);
-        currentNode = tempNode;
-        delete tempNode;
+        temp = new node(0);
+        tail->SetNextNode(temp);
+        tail = temp;
     }
 }
 
-template <class T>
-linkedList<T>::linkedList(int _size, T value): size(_size), head(value), next(value), tail(value){
-    node<T> *currentNode;
-    node<T> *tempNode;
-    currentNode = head;
+//Alt Constructor 2, list of _size, full of value
+linkedList::linkedList(int _size, double value): size(_size){
+    node head(value);
+    tail = &head;
     for(int i=0; i < getSize(); i++){
-        tempNode = new node<T>(value);
-        currentNode->SetNextNode(tempNode);
-        currentNode = tempNode;
-        delete tempNode;
+        temp = new node(value);
+        tail->SetNextNode(temp);
+        tail = temp;
     }
 }
 
-template <class T>
-linkedList<T>::~linkedList(){
-
-}
-
-template <class T>
-void linkedList<T>::init(){
-    node<T> *currentNode = head;
+//Destructor
+linkedList::~linkedList(){
     for(int i=0; i < getSize(); i++){
-        
+        temp = head;
+        head = head->GetNextNode();
+        delete temp;
     }
 }
 
-template <class T>
-void linkedList<T>::insert(T value, int index){
-    node<T> *currentNode;
-    currentNode = head;
+//initializes all nodes value to 0
+void linkedList::init(){
+    node head(0);
+    tail = &head;
+    while(tail->GetNextNode() != NULL)
+    for(int i=0; i < getSize(); i++){
+        tail->SetValue(0);
+        tail = tail->GetNextNode();
+    }
+}
+
+void linkedList::insert(double value, int index){  
+    node head;
+    tail = &head;
+    while(tail->GetNextNode() != NULL){
     for(int i=0; i < (index+1); i++){
-        next = currentNode.GetNextNode();
-        currentNode = next;
+        next = tail->GetNextNode();
+        tail = next;
     }
-    currentNode.SetValue(value);
+    }
+    tail->SetValue(value);
 }
 
-template <class T>
-int linkedList<T>::find(T value){
+int linkedList::find(double value){
     int index = 0;
-    node<T> *currentNode;
-    currentNode = head;
+    node head;
+    tail = &head;
+    while(tail->GetNextNode() != NULL){
     for(int i=0; i < getSize(); i++){
-        if(currentNode->GetValue() == value){
+        if(tail->GetValue() == value){
             index = i;
         }else{
             cout << "Could not find that value in the dataset." << endl;
         }
-        currentNode->SetNextNode(next);
-        currentNode = next;
+        next = tail->GetNextNode();
+        tail = next;
+    }
     }
     return index;
 }
 
-template <class T>
-T linkedList<T>::operator[](int index){
-    T value;
-    node<T> *currentNode;
-    currentNode = head;
+double linkedList::operator[](int index){
+    double value;
+    node head;
+    tail = &head;
+    while(tail->GetNextNode() != NULL){
     for(int i=0; i < (index+1); i++){
-        next = currentNode.GetNextNode();
-        currentNode = next;
+        next = tail->GetNextNode();
+        tail = next;
     }
-     value = currentNode.GetValue();
+    }
+     value = tail->GetValue();
      return value;
 }
 
-template <class T>
-int linkedList<T>::getSize() const{
+int linkedList::getSize() const{
     return size;
 }

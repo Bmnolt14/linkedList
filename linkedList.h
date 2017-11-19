@@ -12,33 +12,28 @@
 #include <cstdlib>
 #include <iostream>
 #include "node.h"
-#include "node.cpp"
-
-
 using namespace std;
 
-template <class T>
 class linkedList {
 public:
     linkedList();
     linkedList(int _size);
-    linkedList(int _size, T value);
+    linkedList(int _size, double value);
     ~linkedList();
    
-    void insert(T value, int index);
-    int find(T value);
-    T operator[](int index);
+    void insert(double value, int index);
+    int find(double value);
+    double operator[](int index);
     
     int getSize() const;
     void init();
     
 private:
     int size;
-    node<T> *head;
-    node<T> *next;
-    node<T> *tail;
-    node<T> *currentNode;
-    node<T> *tempNode;
+    node *head;
+    node *next;
+    node *temp;
+    node *tail;
 };
 
 

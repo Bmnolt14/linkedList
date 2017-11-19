@@ -9,10 +9,7 @@
 
 #include <cstdio>
 #include <iostream>
-#include "node.h"
-#include "node.cpp"
 #include "linkedList.h"
-#include "linkedList.cpp"
 #include <ctime>
 #include <stdlib.h>
 
@@ -27,7 +24,7 @@ int main (int argc, char **argv)
 	time_t begin,end;
 	time(&begin);
 	
-	linkedList<int> linkedList1(1000000, 0);
+	linkedList linkedList1(1000000, 0);
 	linkedList1.init();
 	
 	time(&end);
@@ -40,7 +37,7 @@ int main (int argc, char **argv)
 	int tenPercent = linkedList1.getSize()*0.1; 
 	int random(0); 
 	int size = linkedList1.getSize();
-	/*cout << "Inserting " << tenPercent << " items." << endl;
+	cout << "Inserting " << tenPercent << " items." << endl;
 	
 	srand(time(0)); 
 	time(&begin);
@@ -57,10 +54,10 @@ int main (int argc, char **argv)
 	
 	sec_elapsed = difftime(end, begin);
 	cout.precision(10);
-	cout << "Time elapsed: " << sec_elapsed << endl;*/
+	cout << "Time elapsed: " << sec_elapsed << endl;
 	
 	/*******************Reads using myArray************************/
-	/*cout << "Reading " << tenPercent << " items." << endl;
+	cout << "Reading " << tenPercent << " items." << endl;
 	time(&begin);
 	
 	int num(0);
@@ -74,7 +71,7 @@ int main (int argc, char **argv)
 	time(&end);
 	sec_elapsed = difftime(end, begin);
 	cout.precision(10);
-	cout << "Time elapsed: " << sec_elapsed << endl;*/
+	cout << "Time elapsed: " << sec_elapsed << endl;
 	
 	/*******************Searching using myArray************************/
 	cout << "Searching " << tenPercent << " items." << endl;
