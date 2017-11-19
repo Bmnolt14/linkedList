@@ -19,7 +19,7 @@ using namespace std;
 
 int main (int argc, char **argv)
 { 
-	/*******************Creation using myArray*************************/
+	/*******************Creation using linkedList*************************/
 	//1K size
 	time_t begin,end;
 	time(&begin);
@@ -33,7 +33,7 @@ int main (int argc, char **argv)
 	cout.precision(10);
 	cout << "Time elapsed: " << sec_elapsed << endl;
 	
-	/*******************Insertion using myArray************************/
+	/*******************Insertion using linkedList************************/
 	int tenPercent = linkedList1.getSize()*0.1; 
 	int random(0); 
 	int size = linkedList1.getSize();
@@ -46,8 +46,8 @@ int main (int argc, char **argv)
 	for(int i = 0; i < tenPercent; i++)
 	{
 		random = rand() % size;
-		//cout << random << endl;
 		linkedList1.insert(random, 0);
+                cout << "Inserted " << random << endl; 
 	}
 	
 	time(&end);
@@ -56,7 +56,7 @@ int main (int argc, char **argv)
 	cout.precision(10);
 	cout << "Time elapsed: " << sec_elapsed << endl;
 	
-	/*******************Reads using myArray************************/
+	/*******************Reads using linkedList************************/
 	cout << "Reading " << tenPercent << " items." << endl;
 	time(&begin);
 	
@@ -64,8 +64,8 @@ int main (int argc, char **argv)
 	for(int i = 0; i < tenPercent; i++)
 	{
 		random = rand() % size;
-		//cout << random << endl;
 		num = linkedList1[random];
+                cout << "The number at index " << random << " is " << num << endl;
 	}
 	
 	time(&end);
@@ -81,8 +81,8 @@ int main (int argc, char **argv)
 	for(int i = 0; i < tenPercent; i++)
 	{
 		random = rand() % size;
-		//cout << random << endl;
 		index = linkedList1.find(random);
+                cout << random << " is at index " << index << endl;
 	}
 	
 	time(&end);

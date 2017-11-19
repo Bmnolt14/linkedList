@@ -13,14 +13,15 @@
 
 using namespace std;
 
-//Default Constructor, list of size 0.
-linkedList::linkedList() : size(0), head(0), next(NULL) {
+//Default Constructor, list with just the head set to 0.
+linkedList::linkedList() : size(1){
+    head = new node(0);
 }
 
 //Alt Constructor, list of _size, full of 0's
-linkedList::linkedList(int _size) : size(_size), head(0), next(0){
-    node head(0);
-    tail = &head;
+linkedList::linkedList(int _size) : size(_size){
+    head = new node(0);
+    tail = head;
     for(int i=0; i < getSize(); i++){
         temp = new node(0);
         tail->SetNextNode(temp);
@@ -30,8 +31,8 @@ linkedList::linkedList(int _size) : size(_size), head(0), next(0){
 
 //Alt Constructor 2, list of _size, full of value
 linkedList::linkedList(int _size, double value): size(_size){
-    node head(value);
-    tail = &head;
+    head = new node(value);
+    tail = head;
     for(int i=0; i < getSize(); i++){
         temp = new node(value);
         tail->SetNextNode(temp);
@@ -59,6 +60,7 @@ void linkedList::init(){
     }
 }
 
+//inserts value at index of list
 void linkedList::insert(double value, int index){  
     node head;
     tail = &head;
@@ -69,8 +71,10 @@ void linkedList::insert(double value, int index){
     }
     }
     tail->SetValue(value);
+    cout << "Insertion complete." << endl;
 }
 
+//returns the index of value
 int linkedList::find(double value){
     int index = 0;
     node head;
@@ -78,9 +82,11 @@ int linkedList::find(double value){
     while(tail->GetNextNode() != NULL){
     for(int i=0; i < getSize(); i++){
         if(tail->GetValue() == value){
+            cout << "Found the value" << endl;
             index = i;
         }else{
             cout << "Could not find that value in the dataset." << endl;
+            index = 0;
         }
         next = tail->GetNextNode();
         tail = next;
@@ -89,6 +95,7 @@ int linkedList::find(double value){
     return index;
 }
 
+//returns the value at index
 double linkedList::operator[](int index){
     double value;
     node head;
@@ -100,6 +107,7 @@ double linkedList::operator[](int index){
     }
     }
      value = tail->GetValue();
+     cout << "Found index." << endl;
      return value;
 }
 
